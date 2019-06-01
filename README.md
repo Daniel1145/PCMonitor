@@ -18,3 +18,9 @@ Next, in the Python script make sure that the correct serial port is opened on l
 
 Finally, with the LCD connected to the Arduino UNO, upload the Arduino code to the Arduino UNO, and run the Python script on your PC. This
 should get the Arduino UNO to display your PC information on the LCD!
+
+## TODO
+
+- Add CPU Temperature monitoring
+- Add GPU monitoring
+- Add graphical views of information
