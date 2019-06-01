@@ -6,8 +6,8 @@ the Arduino UNO, which displays it on an LCD screen.
 
 ### Components Used
 
-1x Arduino UNO
-1x Kuman 320x480 LCD Display
+- 1x Arduino UNO
+- 1x Kuman 320x480 LCD Display
 
 ### Installing
 
