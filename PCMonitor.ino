@@ -14,7 +14,10 @@ char tempChars[numChars];
 char cpuUsage[numChars];
 char ramUsed[numChars];
 char ramTotal[numChars];
+char gpuUsage[numChars];
+char gpuTemp[numChars];
 char* ramUsage;
+char* gpuTotal;
 
 boolean newData = false;
 
@@ -37,6 +40,11 @@ void setup() {
   tft.setCursor(10,60);
   tft.print("RAM");
   tft.setCursor(63,58);
+  tft.print(":");
+
+  tft.setCursor(10,90);
+  tft.print("GPU");
+  tft.setCursor(63,88);
   tft.print(":");
 }
 
@@ -94,9 +102,21 @@ void parseData() {
   strcpy(ramTotal, index);
   strcat(ramTotal, " GB");
 
+  index = strtok(NULL, ",");
+  strcpy(gpuTemp, index);
+  strcat(gpuTemp, "C");
+
+  index = strtok(NULL, ",");
+  strcpy(gpuUsage, index);
+  strcat(gpuUsage, "%, ");
+
   ramUsage = malloc(strlen(ramUsed) + strlen(ramTotal) + 1);
   memcpy(ramUsage, ramUsed, strlen(ramUsed));
   memcpy(ramUsage+strlen(ramUsed), ramTotal, strlen(ramTotal)+1);
+
+  gpuTotal = malloc(strlen(gpuUsage) + strlen(gpuTemp) + 1);
+  memcpy(gpuTotal, gpuUsage, strlen(gpuUsage));
+  memcpy(gpuTotal+strlen(gpuUsage), gpuTemp, strlen(gpuTemp) + 1); 
 }
 
 void displayData() {
@@ -108,15 +128,24 @@ void displayData() {
   static int16_t ramUsagey = 60;
   static uint16_t ramUsagew, ramUsageh;
 
+  static int16_t GPUx = 70;
+  static int16_t GPUy = 90;
+  static int16_t GPUw, GPUh;
+
   tft.fillRect(CPUx, CPUy, CPUw, CPUh, BLACK);
   tft.fillRect(ramUsagex, ramUsagey, ramUsagew, ramUsageh, BLACK);
+  tft.fillRect(GPUx, GPUy, GPUw, GPUh, BLACK);
 
   tft.setCursor(70,30);
   tft.print(cpuUsage);
 
   tft.setCursor(70,60);
   tft.print(ramUsage);
+
+  tft.setCursor(70,90);
+  tft.print(gpuTotal);
   
   tft.getTextBounds(cpuUsage, 70, 30, &CPUx, &CPUy, &CPUw, &CPUh);
   tft.getTextBounds(ramUsage, 70, 60, &ramUsagex, &ramUsagey, &ramUsagew, &ramUsageh);
+  tft.getTextBounds(gpuTotal, 70, 90, &GPUx, &GPUy, &GPUw, &GPUh);
 }
