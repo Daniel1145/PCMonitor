@@ -56,6 +56,7 @@ void loop() {
     displayData();
     newData = false;
     free(ramUsage);
+    free(gpuTotal);
   }
   delay(100);
 }
