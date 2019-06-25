@@ -31,3 +31,5 @@ should get the Arduino UNO to display your PC information on the LCD!
 
 - Add CPU Temperature monitoring
 - Add graphical views of information
+- Make python script run in background + run on startup
+- Turn LCD off and on when PC turns off and on
